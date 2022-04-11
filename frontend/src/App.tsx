@@ -4,6 +4,18 @@ import { useColorScheme, useHotkeys, useLocalStorage } from '@mantine/hooks';
 import { NavBar } from './components/NavBar';
 import { MainContent } from './views/MainContent';
 
+declare module '@mantine/core' {
+  export interface MantineThemeOther {
+    textColor: string;
+    textColorDark: string;
+    accentColor1: string;
+    accentColor2: string;
+    backgroundColor1: string;
+    backgroundColor2: string;
+    backgroundColor3: string;
+  }
+}
+
 const App: FC = () => {
   const preferredColorScheme = useColorScheme();
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({

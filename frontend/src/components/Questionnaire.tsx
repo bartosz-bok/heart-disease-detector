@@ -2,15 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { QuestionCard } from './QuestionCard';
 import { QuestionsData } from '../constants/QuestionsData';
 import { getQuestionsWithAnswers } from '../transformers/questions';
-import {
-  AnswerType,
-  InputAnswerType,
-  isBooleanQuestionWithAnswer,
-  isFloatQuestionWithAnswer,
-  isIntegerQuestionWithAnswer,
-  isListQuestionWithAnswer,
-  QuestionsWithAnswersType,
-} from '../types/question';
+import { InputAnswerType, QuestionsWithAnswersType } from '../types/question';
 import { Button, Card, Center, createStyles, Group, Paper, Title, Text } from '@mantine/core';
 import { ArrowNarrowLeft, ArrowNarrowRight } from 'tabler-icons-react';
 
@@ -100,41 +92,13 @@ export const Questionnaire: FC = () => {
     setCurrentQuestion((prev) => prev - 1);
   };
 
-  const handleSubmit = ({ answer, type }: InputAnswerType) => {
-    switch (type) {
-      case AnswerType.BOOLEAN: {
-        setQuestions((prev) => [
-          ...prev.map((e) =>
-            e.id === currentQuestionId && isBooleanQuestionWithAnswer(e) ? { ...e, answer } : e
-          ),
-        ]);
-        break;
-      }
-      case AnswerType.INTEGER: {
-        setQuestions((prev) => [
-          ...prev.map((e) =>
-            e.id === currentQuestionId && isIntegerQuestionWithAnswer(e) ? { ...e, answer } : e
-          ),
-        ]);
-        break;
-      }
-      case AnswerType.FLOAT: {
-        setQuestions((prev) => [
-          ...prev.map((e) =>
-            e.id === currentQuestionId && isFloatQuestionWithAnswer(e) ? { ...e, answer } : e
-          ),
-        ]);
-        break;
-      }
-      case AnswerType.LIST: {
-        setQuestions((prev) => [
-          ...prev.map((e) =>
-            e.id === currentQuestionId && isListQuestionWithAnswer(e) ? { ...e, answer } : e
-          ),
-        ]);
-        break;
-      }
-    }
+  const handleSubmit = (answer: InputAnswerType) => {
+    setQuestions((prev) => [
+      ...prev.map((e) =>
+        e.id === currentQuestionId ? ({ ...e, answer } as QuestionsWithAnswersType) : e
+      ),
+    ]);
+
     goToNextQuestion();
   };
 
@@ -161,7 +125,7 @@ export const Questionnaire: FC = () => {
           </Group>
         </Card.Section>
 
-        <Paper p={50} m={40} className={classes.paper}>
+        <Paper radius={15} p={50} m={40} className={classes.paper}>
           <Center>
             <Title order={3} className={classes.question}>
               {questions[currentQuestionId].question}

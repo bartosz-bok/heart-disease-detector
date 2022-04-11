@@ -1,14 +1,14 @@
 import { Button, Group, NumberInput } from '@mantine/core';
 import { FC, useState } from 'react';
 import { Check } from 'tabler-icons-react';
-import { AnswerType, InputAnswerType } from '../../types/question';
+import { InputAnswerType } from '../../types/question';
 
 type IntegerAnswerProps = {
   value: number | undefined;
   min: number;
   max: number;
   defaultValue: number;
-  onSubmit: ({ answer, type }: InputAnswerType) => void;
+  onSubmit: (answer: InputAnswerType) => void;
 };
 
 export const IntegerAnswer: FC<IntegerAnswerProps> = ({ onSubmit, value, defaultValue }) => {
@@ -22,15 +22,7 @@ export const IntegerAnswer: FC<IntegerAnswerProps> = ({ onSubmit, value, default
         defaultValue={defaultValue}
         onChange={(e) => e && setInputValue(e)}
       />
-      <Button
-        onClick={() =>
-          onSubmit({
-            answer: inputValue || defaultValue,
-            type: AnswerType.INTEGER,
-          })
-        }
-        variant="light"
-        color="blue">
+      <Button onClick={() => onSubmit(inputValue || defaultValue)} variant="light" color="blue">
         <Check />
       </Button>
     </Group>

@@ -7,7 +7,13 @@ const useStyles = createStyles((theme) => ({
   container: {
     backgroundColor: theme.colorScheme === 'dark' ? undefined : theme.other.backgroundColor1,
     height: `calc(100vh - ${NAV_BAR_HEIGHT}px)`,
-    paddingTop: '20vh',
+    display: 'flex',
+    alignItems: 'center',
+    paddingBottom: NAV_BAR_HEIGHT,
+  },
+  innerContainer: {
+    maxWidth: '960px',
+    width: '100%',
   },
 }));
 
@@ -15,7 +21,7 @@ export const MainContent: FC = () => {
   const { classes } = useStyles();
   return (
     <Paper radius={0} className={classes.container}>
-      <Container pt={'md'}>
+      <Container pt={'md'} className={classes.innerContainer}>
         <Questionnaire />
       </Container>
     </Paper>

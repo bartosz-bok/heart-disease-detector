@@ -84,20 +84,4 @@ export const isBooleanQuestionWithAnswer = (
   return question.type === AnswerType.BOOLEAN;
 };
 
-export type InputAnswerType =
-  | {
-      answer: boolean;
-      type: AnswerType.BOOLEAN;
-    }
-  | {
-      answer: string;
-      type: AnswerType.LIST;
-    }
-  | {
-      answer: number;
-      type: AnswerType.INTEGER;
-    }
-  | {
-      answer: number;
-      type: AnswerType.FLOAT;
-    };
+export type InputAnswerType = boolean | string | number;

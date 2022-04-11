@@ -10,7 +10,7 @@ import { IntegerAnswer } from './AnswerForms/IntegerAnswer';
 
 type QuestionCardProps = {
   question: QuestionsWithAnswersType;
-  onSubmit: ({ answer, type }: InputAnswerType) => void;
+  onSubmit: (answer: InputAnswerType) => void;
 };
 
 export const QuestionCard: FC<QuestionCardProps> = ({ question, onSubmit }) => {
