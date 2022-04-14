@@ -1,12 +1,14 @@
 import { FC } from 'react';
 import {
   QuestionsWithAnswersType,
-  isIntegerQuestionWithAnswer,
   isBooleanQuestionWithAnswer,
   InputAnswerType,
+  isNumberQuestionWithAnswer,
+  isListQuestionWithAnswer,
 } from '../types/question';
 import { BooleanAnswer } from './AnswerForms/BooleanAnswer';
-import { IntegerAnswer } from './AnswerForms/IntegerAnswer';
+import { ListAnswer } from './AnswerForms/ListAnswer';
+import { NumberAnswer } from './AnswerForms/NumberAnswer';
 
 type QuestionCardProps = {
   question: QuestionsWithAnswersType;
@@ -15,16 +17,19 @@ type QuestionCardProps = {
 
 export const QuestionCard: FC<QuestionCardProps> = ({ question, onSubmit }) => {
   const renderSwitch = (question: QuestionsWithAnswersType) => {
-    if (isIntegerQuestionWithAnswer(question)) {
+    if (isNumberQuestionWithAnswer(question)) {
       return (
-        <IntegerAnswer
+        <NumberAnswer
           min={question.min}
           max={question.max}
+          precision={question.precision}
           value={question.answer}
-          defaultValue={question.defaultValue}
           onSubmit={onSubmit}
         />
       );
+    }
+    if (isListQuestionWithAnswer(question)) {
+      return <ListAnswer onSubmit={onSubmit} answers={question.answers} />;
     }
     if (isBooleanQuestionWithAnswer(question)) {
       return <BooleanAnswer onSubmit={onSubmit} />;

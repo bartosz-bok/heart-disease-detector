@@ -3,7 +3,7 @@ import { QuestionCard } from './QuestionCard';
 import { QuestionsData } from '../constants/QuestionsData';
 import { getQuestionsWithAnswers } from '../transformers/questions';
 import { InputAnswerType, QuestionsWithAnswersType } from '../types/question';
-import { Button, Card, Center, createStyles, Group, Paper, Title, Text } from '@mantine/core';
+import { Button, Card, Center, createStyles, Group, Paper, Title } from '@mantine/core';
 import { ArrowNarrowLeft, ArrowNarrowRight } from 'tabler-icons-react';
 
 const questionsWithAnswers = getQuestionsWithAnswers(QuestionsData);
@@ -106,9 +106,15 @@ export const Questionnaire: FC = () => {
     updateNavigation();
   }, [currentQuestionId]);
 
+  useEffect(() => {
+    console.group('data');
+    questions.forEach((e) => console.log(`${e.question}: `, e.answer));
+    console.groupEnd();
+  }, [questions]);
+
   return (
     <>
-      <Card radius={15} shadow="sm" p="lg" className={classes.card}>
+      <Card radius={15} shadow="sm" pb={50} className={classes.card}>
         <Card.Section className={classes.topSection}>
           <Group position="apart">
             <Group spacing={0} className={classes.buttons}>
@@ -132,12 +138,11 @@ export const Questionnaire: FC = () => {
             </Title>
           </Center>
         </Paper>
-        <QuestionCard question={questions[currentQuestionId]} onSubmit={handleSubmit} />
-        {questions.map((e) => (
-          <Text key={e.id}>
-            {e.question}: {e.answer?.toString()}
-          </Text>
-        ))}
+        <QuestionCard
+          key={questions[currentQuestionId].id}
+          question={questions[currentQuestionId]}
+          onSubmit={handleSubmit}
+        />
       </Card>
     </>
   );

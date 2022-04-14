@@ -1,8 +1,7 @@
 export enum AnswerType {
   BOOLEAN = 'BOOLEAN',
   LIST = 'LIST',
-  INTEGER = 'INTEGER',
-  FLOAT = 'FLOAT',
+  NUMBER = 'NUMBER',
 }
 
 type QuestionBase = {
@@ -19,30 +18,20 @@ export type ListQuestion = QuestionBase & {
   answers: {
     id: number;
     answer: string;
+    color: string;
   }[];
 };
 
-export type IntegerQuestion = QuestionBase & {
-  type: AnswerType.INTEGER;
-  defaultValue: number;
+export type NumberQuestion = QuestionBase & {
+  type: AnswerType.NUMBER;
   min: number;
   max: number;
+  precision: number;
 };
 
-export type FloatQuestion = QuestionBase & {
-  type: AnswerType.FLOAT;
-  defaultValue: number;
-  min: number;
-  max: number;
-};
+export type QuestionsType = NumberQuestion | ListQuestion | BooleanQuestion;
 
-export type QuestionsType = FloatQuestion | IntegerQuestion | ListQuestion | BooleanQuestion;
-
-export type IntegerQuestionWithAnswer = IntegerQuestion & {
-  answer: undefined | number;
-};
-
-export type FloatQuestionWithAnswer = FloatQuestion & {
+export type NumberQuestionWithAnswer = NumberQuestion & {
   answer: undefined | number;
 };
 
@@ -55,21 +44,14 @@ export type BooleanQuestionWithAnswer = BooleanQuestion & {
 };
 
 export type QuestionsWithAnswersType =
-  | IntegerQuestionWithAnswer
-  | FloatQuestionWithAnswer
+  | NumberQuestionWithAnswer
   | ListQuestionWithAnswer
   | BooleanQuestionWithAnswer;
 
-export const isIntegerQuestionWithAnswer = (
+export const isNumberQuestionWithAnswer = (
   question: QuestionsWithAnswersType
-): question is IntegerQuestionWithAnswer => {
-  return question.type === AnswerType.INTEGER;
-};
-
-export const isFloatQuestionWithAnswer = (
-  question: QuestionsWithAnswersType
-): question is FloatQuestionWithAnswer => {
-  return question.type === AnswerType.FLOAT;
+): question is NumberQuestionWithAnswer => {
+  return question.type === AnswerType.NUMBER;
 };
 
 export const isListQuestionWithAnswer = (
