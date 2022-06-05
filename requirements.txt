@@ -1,0 +1,14 @@
+astroid @ file:///C:/ci/astroid_1613501047216/work
+click @ file:///home/linux1/recipes/ci/click_1610990599742/work
+colorama @ file:///tmp/build/80754af9/colorama_1607707115595/work
+fastapi==0.78.0
+h11==0.13.0
+isort @ file:///tmp/build/80754af9/isort_1616355431277/work
+lazy-object-proxy @ file:///C:/ci/lazy-object-proxy_1616529307648/work
+mccabe==0.6.1
+pydantic==1.9.1
+pylint @ file:///C:/ci/pylint_1617136058775/work
+six @ file:///C:/ci/six_1605187374963/work
+uvicorn==0.17.6
+websockets==10.3
+wrapt==1.12.1
