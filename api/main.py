@@ -54,39 +54,12 @@ def response(item: Item):
     physicalHealth = item.physicalHealth
     mentalHealth = item.mentalHealth
     diffWalking = item.diffWalking
-
-    if item.sex == 'Female':
-        sex = 0
-    elif item.sex == 'Male':
-        sex = 1
-
+    sex = item.sex
     age = item.age
-
-    if item.race == 'White':
-        race = 4
-    elif item.race == 'Asian':
-        race = 3
-    elif item.race == 'Hispanic':
-        race = 2
-    elif item.race == 'Other':
-        race = 1
-    elif item.race == 'Black':
-        race = 0
-
+    race = item.race
     diabetic = item.diabetic
     physicalActivity = item.physicalActivity
-
-    if item.genHealth == 'Excellent':
-        genHealth = 4
-    elif item.genHealth == 'Very Good':
-        genHealth = 3
-    elif item.genHealth == 'Good':
-        genHealth = 2
-    elif item.genHealth == 'Fair':
-        genHealth = 1
-    elif item.genHealth == 'Poor':
-        genHealth = 0
-
+    genHealth = item.genHealth
     sleepTime = item.sleepTime
     asthma = item.asthma
     kidneyDisease = item.kidneyDisease
