@@ -27,5 +27,5 @@ class Item(BaseModel):
 
 @app.post("/")
 def response(item: Item):
-    wynik = item.sleepTime * 2
-    return { "wynik": wynik }
+    wynik = item.sleepTime * item.bmi
+    return { "result": wynik }
