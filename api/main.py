@@ -103,13 +103,9 @@ def response(item: Item):
 
     print(pd.__version__)
 
-    #wynik = clf.predict_proba(val_X)
-    #wynik2 = int(wynik[0][1]*100)
+    wynik = clf.predict_proba(val_X)
+    wynik2 = int(wynik[0][1]*100)
 
-    #clf = load('model.joblib')
+    clf = load('model.joblib')
 
-
-    #wynik = clf.predict_proba(val_X)
-    #wynik2 = int(wynik[0][1]*100)
-    wynik2 = 2
     return { "result": wynik2 }
