@@ -96,7 +96,8 @@ def response(item: Item):
          age, race, diabetic, physicalActivity, genHealth, sleepTime, asthma, kidneyDisease, skinCancer]
 
     val_X = pd.DataFrame(X)
-    val_X = val_X.values.reshape(1,-1)
+    #val_X = val_X.values.reshape(1,-1)
+
 
     clf = load('model.joblib')
 
@@ -105,4 +106,10 @@ def response(item: Item):
     wynik = clf.predict_proba(val_X)
     wynik2 = int(wynik[0][1]*100)
 
+    #clf = load('model.joblib')
+
+
+    #wynik = clf.predict_proba(val_X)
+    #wynik2 = int(wynik[0][1]*100)
+    wynik2 = 2
     return { "result": wynik2 }
