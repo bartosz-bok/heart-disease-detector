@@ -1,11 +1,5 @@
 import { FC } from 'react';
-import {
-  QuestionsWithAnswersType,
-  isBooleanQuestionWithAnswer,
-  InputAnswerType,
-  isNumberQuestionWithAnswer,
-  isListQuestionWithAnswer,
-} from '../types/question';
+import { QuestionsWithAnswersType, InputAnswerType, AnswerType } from '../types/question';
 import { BooleanAnswer } from './AnswerForms/BooleanAnswer';
 import { ListAnswer } from './AnswerForms/ListAnswer';
 import { NumberAnswer } from './AnswerForms/NumberAnswer';
@@ -16,8 +10,10 @@ type QuestionCardProps = {
 };
 
 export const QuestionCard: FC<QuestionCardProps> = ({ question, onSubmit }) => {
-  const renderSwitch = (question: QuestionsWithAnswersType) => {
-    if (isNumberQuestionWithAnswer(question)) {
+  switch (question.type) {
+    case AnswerType.BOOLEAN:
+      return <BooleanAnswer onSubmit={onSubmit} />;
+    case AnswerType.NUMBER:
       return (
         <NumberAnswer
           min={question.min}
@@ -27,15 +23,9 @@ export const QuestionCard: FC<QuestionCardProps> = ({ question, onSubmit }) => {
           onSubmit={onSubmit}
         />
       );
-    }
-    if (isListQuestionWithAnswer(question)) {
-      return <ListAnswer onSubmit={onSubmit} answers={question.answers} />;
-    }
-    if (isBooleanQuestionWithAnswer(question)) {
-      return <BooleanAnswer onSubmit={onSubmit} />;
-    }
-    return <BooleanAnswer onSubmit={onSubmit} />;
-  };
-
-  return renderSwitch(question);
+    case AnswerType.LIST:
+      return <ListAnswer answers={question.answers} onSubmit={onSubmit} />;
+    default:
+      return null;
+  }
 };

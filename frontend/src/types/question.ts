@@ -48,22 +48,4 @@ export type QuestionsWithAnswersType =
   | ListQuestionWithAnswer
   | BooleanQuestionWithAnswer;
 
-export const isNumberQuestionWithAnswer = (
-  question: QuestionsWithAnswersType
-): question is NumberQuestionWithAnswer => {
-  return question.type === AnswerType.NUMBER;
-};
-
-export const isListQuestionWithAnswer = (
-  question: QuestionsWithAnswersType
-): question is ListQuestionWithAnswer => {
-  return question.type === AnswerType.LIST;
-};
-
-export const isBooleanQuestionWithAnswer = (
-  question: QuestionsWithAnswersType
-): question is BooleanQuestionWithAnswer => {
-  return question.type === AnswerType.BOOLEAN;
-};
-
 export type InputAnswerType = boolean | string | number;
