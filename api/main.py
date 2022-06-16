@@ -14,12 +14,12 @@ class Item(BaseModel):
     physicalHealth: int
     mentalHealth: int
     diffWalking: bool
-    sex: bool
+    sex: str
     age: int
-    race: int
+    race: str
     diabetic: bool
     physicalActivity: bool
-    genHealth: int
+    genHealth: str
     sleepTime: int
     asthma: bool
     kidneyDisease: bool
