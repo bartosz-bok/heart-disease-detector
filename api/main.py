@@ -1,11 +1,31 @@
-# main.py
+from typing import Union
+from enum import Enum
 from fastapi import FastAPI
+from pydantic import BaseModel
+
 app = FastAPI()
 
-probability = 0.5
 
-probability_str = str(probability)
+class Item(BaseModel):
+    bmi: int
+    smoking: bool
+    alcohol: bool
+    stroke: bool
+    physicalHealth: int
+    mentalHealth: int
+    diffWalking: bool
+    sex: bool
+    age: int
+    race: int
+    diabetic: bool
+    physicalActivity: bool
+    genHealth: int
+    sleepTime: int
+    asthma: bool
+    kidneyDisease: bool
+    skinCancer: bool
 
-@app.get("/")
-def hello():
-    return {"number":probability_str}
+@app.post("/")
+def response(item: Item):
+    wynik = item.sleepTime * 2
+    return { "wynik": wynik }
