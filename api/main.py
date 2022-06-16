@@ -4,6 +4,8 @@ from pydantic import BaseModel
 from joblib import load
 import pandas as pd
 
+
+
 app = FastAPI()
 
 origins = [
@@ -97,6 +99,8 @@ def response(item: Item):
     val_X = val_X.values.reshape(1,-1)
 
     clf = load('model.joblib')
+
+    print(pd.__version__)
 
     wynik = clf.predict_proba(val_X)
     wynik2 = int(wynik[0][1]*100)
